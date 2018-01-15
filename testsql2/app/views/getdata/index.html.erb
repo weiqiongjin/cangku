@@ -1,0 +1,23 @@
+<h1>Listing getdata</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @getdata.each do |getdatum| %>
+  <tr>
+    <td><%= getdatum.name %></td>
+    <td><%= link_to 'Show', getdatum %></td>
+    <td><%= link_to 'Edit', edit_getdatum_path(getdatum) %></td>
+    <td><%= link_to 'Destroy', getdatum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Getdatum', new_getdatum_path %>

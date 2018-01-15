@@ -1,0 +1,68 @@
+<form action="#" method="get">
+<br>
+<label><input type="checkbox" name="box" value=""></label>
+<button onclick="aa('modle')">选中生成模型</button>
+<button onclick="aa('method')">选中生成方法</button>
+<button onclick="aa('both')">选中生成模型及方法</button>
+<br>
+<table>
+
+
+    <tr>
+        <td>表名</td>
+        <td colspan="3">生成选项</td>
+    </tr>
+    <% @alltable.each do |table|%>
+   <tr>
+        <td><label><input type="checkbox"  name="box" value="<%=table%>"><%=table%></label></td>
+        <td><button onclick="bb(this)" name="modle" id="<%=table%>">选中生成模型</button></td>
+        <td><button onclick="bb(this)" name="method" id="<%=table%>">选中生成方法</button></td>
+        <td><button onclick="bb(this)" name="both"  id="<%=table%>">选中生成模型及方法</button></td>
+    </tr>
+
+    <% end %>
+</table>
+
+</form>
+
+
+
+<script type="text/javascript">
+    function aa(data){ 
+        var obj=document.getElementsByName('box'); //选择所有name="'box'"的对象，返回数组 
+        //取到对象数组后，我们来循环检测它是不是被选中 
+       var s = new Array() 
+        for(var i=0; i<obj.length; i++){ 
+        if(obj[i].checked) s[i]=obj[i].value; //如果选中，将value添加到变量s中 
+        } 
+        //那么现在来检测s的值就知道选中的复选框的值了 
+        // alert(s==''?'你还没有选择任何内容！':s); 
+        if (data=='modle'){
+            $.post("http://192.168.2.15:3000/select/create_modle",{table:s})
+        }
+        else if(data=='method'){
+            $.post("http://192.168.2.15:3000/select/create_method",{table:s})
+         }
+         else if(data=='both'){
+            $.post("http://192.168.2.15:3000/select/gettable",{table:s})
+         }
+        // $.post("http://192.168.2.15:3000/select/create_mothod",{table:s})      
+    } 
+    function bb(da){
+        // var obj=document.getElementsByName('box');  
+        var data=da.name
+        var s = new Array()
+        s[0]=da.id
+       alert(data);
+       if (data=='modle'){
+            $.post("http://192.168.2.15:3000/select/create_modle",{table:s})
+        }
+        else if(data=='method'){
+            $.post("http://192.168.2.15:3000/select/create_method",{table:s})
+         }
+         else if(data=='both'){
+            $.post("http://192.168.2.15:3000/select/gettable",{table:s})
+         }
+    }
+</script>
+

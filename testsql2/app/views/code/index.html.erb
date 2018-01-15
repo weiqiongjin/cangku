@@ -1,0 +1,40 @@
+<h1>读取scv文件内容</h1>
+<input type="text" id="aa" name="file_name" value="test.csv"><button onclick="get_csv()">读取1个文件已对应</button>
+<br>
+<div id="hehe">
+	
+</div>
+<input type="text" id="f1" name="file_name1" value="te1.csv"> 
+<input type="text" id="f2" name="file_name2" value="te2.csv">
+<button onclick="get_csv2()">读取2个文件已对应</button>
+
+<script type="text/javascript">
+    function get_csv2(){
+    	var file1=$("#f1").val();
+    	var file2=$("#f2").val();
+    	file_ar=new Array();
+    	file_ar=[file1,file2]
+    	$.post("http://192.168.2.15:3000/code/get_two_csv",{data:file_ar},function(data){
+    		alert(data.data[0]+data.data[1])
+    	})
+
+    }
+
+	function get_csv(){
+		document.getElementById("hehe").innerHTML = ""
+       var aa=$("#aa")
+       // alert(aa.val());
+       // alert(aa.attr("id"));
+       var inp=aa.val();
+       $.post("http://192.168.2.15:3000/code/get_csv",{data:inp},function(data){
+       	// a=new Array();
+       	// a=[1,2,3,4]
+       	// var str="123"
+       	// alert(a.constructor)
+       	// alert(str.constructor)
+       	// document.write(data.data);
+       	document.getElementById("hehe").innerHTML = data.data[1]
+       })
+	}
+
+</script>
