@@ -4,3 +4,6 @@ class Getdatum < ActiveRecord::Base
   	
   end
 end
+######
+####-----------
+#####----------
