@@ -1,3 +1,4 @@
+#我在Git2 我想在 git2的分针上
 # hash={"name"=>"wqj","age"=>"22"}
 # hash.store("sex","男") 
 # puts hash
